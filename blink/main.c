@@ -31,9 +31,9 @@ hal_uart_handle_t *uart;
 // Send printf to uart1
 int __io_putchar(int ch) {
     if (ch == '\n') {
-        HAL_UART_Transmit(uart, (uint8_t*) "\r", 1, HAL_MAX_DELAY);
+        HAL_UART_Transmit(uart, (uint8_t *)"\r", 1, HAL_MAX_DELAY);
     }
-    if (HAL_UART_Transmit(uart, (uint8_t*) &ch, 1, HAL_MAX_DELAY) != HAL_OK) {
+    if (HAL_UART_Transmit(uart, (uint8_t *)&ch, 1, HAL_MAX_DELAY) != HAL_OK) {
         return -1;
     }
     return ch;
@@ -43,19 +43,15 @@ int __io_putchar(int ch) {
  * brief:  The application entry point.
  * retval: none but we specify int to comply with C99 standard
  */
-int main(void)
-{
+int main(void) {
     /** System Init: this code placed in targets folder initializes your system.
      * It calls the initialization (and sets the initial configuration) of the peripherals.
      * You can use STM32CubeMX to generate and call this code or not in this project.
      * It also contains the HAL initialization and the initial clock configuration.
      */
-    if (mx_system_init() != SYSTEM_OK)
-            {
+    if (mx_system_init() != SYSTEM_OK) {
         return (-1);
-    }
-    else
-    {
+    } else {
         /*
          * You can start your application code here
          */
@@ -73,7 +69,6 @@ int main(void)
                 HAL_GPIO_TogglePin(LED_PORT, LED_PIN);
 
                 next_blink = now + 500;
-
             }
 
             if (now >= next_tick) {
@@ -82,14 +77,11 @@ int main(void)
 
                 loop_cnt = 0;
                 next_tick = now + 1000;
-
             }
 
             ++loop_cnt;
-
         }
     }
 }
 
 /* end main */
-
